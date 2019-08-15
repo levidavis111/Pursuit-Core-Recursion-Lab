@@ -10,6 +10,14 @@ output: 21
 
 //21 = 6 + 5 + 4 + 3 + 2 + 1
 ```
+```swift
+func sumAllNumbersUpTo(number: Int) -> Int {
+if number == 0 {return 0}
+return number + sumAllNumbersUpTo(number: number - 1)
+}
+
+sumAllNumbersUpTo(number: 6)
+```
 
 
 - ### Multiply array
@@ -20,6 +28,13 @@ Write a function called `multArr` that takes in an array of numbers as an argume
 multArr([2, 3, 5]); // returns 30
 multArr([5, 5, 1, 2]); //returns 50
 ```
+```swift
+func multipliesNumbersInAnArray(numberArray: [Int], currentIndex: Int) -> Int {
+if currentIndex == numberArray.count {return 1}
+
+return numberArray[currentIndex] * multipliesNumbersInAnArray(numberArray: numberArray, currentIndex: currentIndex + 1)
+}
+```
 
 - ### Concatenate array
 
@@ -28,6 +43,16 @@ Write a function called `concatArr` that takes in an array of strings as an argu
 ```js
 concatArr(['is', 'it', 'tomorrow']); // returns 'is it tomorrow'
 concatArr(['or', 'just', 'the', 'end', 'of', 'time']); //returns 'or just the end of time'
+```
+```swift
+
+func concatArr(stringArray: [String], index: Int) -> String {
+if index == stringArray.count {return ""}
+
+return stringArray[index] + " " + concatArr(stringArray: stringArray, index: index + 1)
+}
+
+print(concatArr(stringArray: ["is", "it", "tomorrow"], index: 0))
 ```
 
 - ### Sum evens
@@ -38,6 +63,15 @@ Write a function called `sumEvens` that takes in an array of numbers as an argum
 sumEvens([2, 3, 5, 6]); // returns 8
 sumEvens([10, 5, 1, 2, 12]); //returns 24
 ```
+```swift
+func sumEvens(intArray: [Int], index: Int) -> Int {
+if index == intArray.count {return 0}
+
+let evens = intArray.filter({ $0 % 2 == 0 })
+
+return evens[index] + sumEvens(intArray: evens, index: index + 1)
+}
+```
 
 - ### Recursive range
 
@@ -47,7 +81,15 @@ Write a function called `range` which takes in two numbers (num1, num2) as argum
 range(2,10); // returns [2, 3, 4, 5, 6,7, 8, 9, 10]
 range(17,20); // returns [17, 18, 19, 20]
 ```
-
+```swift
+func range(numOne: Int, numTwo: Int) -> [Int] {
+//base case
+if numOne == numTwo{
+return [numOne]
+}
+return [numOne] + range(numOne: numOne + 1, numTwo: numTwo)
+}
+```
 
 - ### Triple Step
 
@@ -58,6 +100,16 @@ tripleStep(3); //returns 4
 tripleStep(4); //returns 7
 tripleStep(5); //returns 13
 tripleStep(10); //returns 274
+```
+
+```swift
+
+func  tripleStep(n: Int) -> Int {
+if n == 0 || n == 1 {return 1}
+if n == 2 {return 2}
+
+return tripleStep(n: n - 1) + tripleStep(n: n - 2) + tripleStep(n: n - 3)
+}
 ```
 
 Source: Cracking the Coding Interview
